@@ -1,0 +1,50 @@
+.sticker {
+  font-size: 48px;
+  min-width: 60px;
+  text-align: center;
+  display: inline-block;
+  transform: translateY(0);   /* ← stable */
+}
+
+.drop {
+  animation: dropDown 0.4s ease-out forwards;
+}
+
+@keyframes dropDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+#volumeSticker {
+  transition: font-size 0.2s ease;
+}
+
+
+#bacImage {
+  max-width: 200px;   /* Minimal consistent width */
+  max-height: 200px;  /* Minimal consistent height */
+  width: auto;
+  height: auto;
+  object-fit: contain; /* Keeps aspect ratio */
+  display: block;
+  margin: 0 auto;      /* Center horizontally */
+  border-radius: 8px;  /* Optional: rounded corners */
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 768px) {
+  #bacImage {
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
