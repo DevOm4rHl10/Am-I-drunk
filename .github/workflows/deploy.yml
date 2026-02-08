@@ -3,27 +3,19 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # deploy on pushes to main
+      - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repo
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # 1️⃣ Checkout repo
+      - uses: actions/checkout@v3
 
-      # 2️⃣ Configure GitHub Pages
-      - name: Configure Pages
-        uses: actions/configure-pages@v3
-
-      # 3️⃣ Upload artifact (use latest v2)
-      - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: .   # deploy the whole repo
-
-      # 4️⃣ Deploy to GitHub Pages
+      # 2️⃣ Deploy static files directly to GitHub Pages
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./   # deploy the entire repo root (or change to a subfolder if needed)
